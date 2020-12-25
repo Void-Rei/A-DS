@@ -22,7 +22,7 @@ namespace lab2unitTest
 		// after each test
 		TEST_METHOD_CLEANUP(cleanUp)
 		{
-			delete[] arr;
+			delete arr;
 		}
 		
 		TEST_METHOD(test_randomize)
