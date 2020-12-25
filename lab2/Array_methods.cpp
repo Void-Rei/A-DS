@@ -36,6 +36,26 @@ Array::~Array()
 	}
 }
 
+void Array::set(int key, size_t index, char type)
+{
+	if (type == 'i') {
+		A[index] = key;
+	}
+	else {
+		C[index] = key;
+	}
+}
+
+int Array::get(char type, size_t i)
+{
+	if (type == 'i') {
+		return A[i];
+	}
+	else {
+		return C[i];
+	}
+}
+
 void Array::randomize()
 {
 	mt19937 engine;
@@ -46,6 +66,21 @@ void Array::randomize()
 	{
 		// generated random distribution of numbers from 0 to (size - 1)
 		uniform_int_distribution<size_t> distribution(0, 5000);
+
+		A[i] = distribution(engine); // got one random number
+	}
+}
+
+void Array::randomize_char()
+{
+	mt19937 engine;
+	const size_t seed = size_t(time(nullptr)); // generated seed based on time
+	engine.seed(seed);
+
+	for (size_t i = 0; i < size; i++)
+	{
+		// generated random distribution of numbers from 0 to (size - 1)
+		uniform_int_distribution<size_t> distribution(65, 90);
 
 		A[i] = distribution(engine); // got one random number
 	}
