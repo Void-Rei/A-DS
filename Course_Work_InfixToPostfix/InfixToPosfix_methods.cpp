@@ -26,6 +26,7 @@ bool infix_to_postfix_transfer(List& formula)
 	while (i < 50)
 	{
 		in >> probe;
+		cout << probe << endl;
 		if ((probe == '0') || (probe == '1') || (probe == '2') || (probe == '3') || (probe == '4') || (probe == '5') || (probe == '6') || (probe == '7') || (probe == '8') || (probe == '9'))
 		{
 			if (previous_num)
@@ -45,14 +46,15 @@ bool infix_to_postfix_transfer(List& formula)
 		}
 		else if ((probe == '-') || (probe == '+') || (probe == '*') || (probe == '/') || (probe == '^') || (probe == '(') || (probe == ')'))
 		{
-			if (previous_operator)
+			if ((previous_operator) && (probe != '(') && (probe != ')'))
 			{
-				cout << "Error: Two numbers in a row" << endl;
+				cout << "Error: Two operators in a row" << endl;
 				return true;
 			}
 			
 			else 
 			{
+				cout << "operator entered" << endl;
 				previous_num = false;
 				previous_operator = true;
 
@@ -177,6 +179,9 @@ bool infix_to_postfix_transfer(List& formula)
 							}
 							operator_stack.pop();
 						}
+
+						previous_num = true;
+						previous_operator = false;
 
 						break;
 				}
